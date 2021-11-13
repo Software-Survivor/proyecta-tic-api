@@ -1,7 +1,7 @@
 enum Enum_Rol {
     estudiante = "Estudiante",
     lider = "Líder",
-    autorizado = "Autorizado",
+    administrador = "Administrador",
 } 
 
 
@@ -32,4 +32,12 @@ enum Enum_TypeObjetive {
 
 }
 
-export {Enum_Rol, Enum_StatusUsers, Enum_StatusProject, Enum_ProjectPhase, Enum_TypeObjetive}
+enum Enum_StatusIncription {
+    aceptada = "Aceptada",
+    rechazada = "Rechazada",
+
+}
+
+
+
+export {Enum_Rol, Enum_StatusUsers, Enum_StatusProject, Enum_ProjectPhase, Enum_TypeObjetive, Enum_StatusIncription}
