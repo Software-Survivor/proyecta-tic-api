@@ -1,6 +1,6 @@
 import ConectBD from "./db/db";
 import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/projectss";
+import { ProjectModel } from "./models/project";
 import { Enum_Rol, Enum_StatusUsers, Enum_TypeObjetive } from "./models/enums";
 import { ObjetiveModel } from "./models/objective";
 

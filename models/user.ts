@@ -17,11 +17,13 @@ const UserSchema = new Schema<User>({
     unique: true,
     validate: {
       validator: (email) => {
-        if (!email.includes("@")) {
+        if (email.includes("@") && email.includes(".")) {
+          return true;
+        } else {
           return false;
         }
       },
-      message: "El formato del correo es erróneo"
+      message: "El formato del correo es erróneo",
     },
   },
   identification: {
