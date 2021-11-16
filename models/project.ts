@@ -1,5 +1,9 @@
 import { Schema, model } from "mongoose";
-import { Enum_StatusProject, Enum_ProjectPhase, Enum_TypeObjetive } from "./enums";
+import {
+  Enum_StatusProject,
+  Enum_ProjectPhase,
+  Enum_TypeObjetive,
+} from "./enums";
 import { UserModel } from "./user";
 import { ObjetiveModel } from "./objective";
 
@@ -11,8 +15,8 @@ interface Project {
   projectPhase: Enum_ProjectPhase;
   statusProject: Enum_StatusProject;
   leader: Schema.Types.ObjectId;
-  objective: [{description: String; type: Enum_TypeObjetive}];
-};
+  objective: [{ description: String; type: Enum_TypeObjetive }];
+}
 
 const ProjectSchema = new Schema<Project>({
   name: {
@@ -41,24 +45,23 @@ const ProjectSchema = new Schema<Project>({
     enum: Enum_StatusProject,
     default: Enum_StatusProject.inactivo,
   },
-  leader:{
-      type: Schema.Types.ObjectId,
-      ref: UserModel,
-  }, 
+  leader: {
+    type: Schema.Types.ObjectId,
+    ref: UserModel,
+  },
   objective: [
     {
-      description:{
+      description: {
         type: String,
         required: true,
       },
       type: {
-        type:String,
+        type: String,
         enum: Enum_TypeObjetive,
         required: true,
-      }
-      
-      
-    }]
+      },
+    },
+  ],
 });
 
 const ProjectModel = model("Project", ProjectSchema);
