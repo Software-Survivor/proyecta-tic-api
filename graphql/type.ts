@@ -20,7 +20,7 @@ const typeDefs = gql`
     lastname: String!
     identification: String!
     email; String!
-    status: Enum_StatusUsers!
+    status: Enum_StatusUsers
     rol: Enum_Rol!
   }
   type Query {
@@ -33,9 +33,15 @@ const typeDefs = gql`
       lastname: String!
       identification: String!
       email; String!
-      status: Enum_StatusUsers!
+      status: Enum_StatusUsers
       rol: Enum_Rol!
     ):User
+
+    deleteUser(
+      _id:String! email:String
+    ): User
+
+    e
   }
 `;
 

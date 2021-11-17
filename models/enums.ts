@@ -13,28 +13,28 @@ enum Enum_StatusUsers {
 }
 
 enum Enum_ProjectPhase {
-    iniciado = "Iniciado",
-    en_desarrollo = "En desarrollo",
-    terminado= "Terminado",
-    nula=''
+    INICIADO = "INICIADO",
+    EN_DESARROLLO = "EN DESARROLLO",
+    TERMINADO= "TERMINADO",
+    NULA=''
 } 
 
 
 enum Enum_StatusProject {
-    activo = "Activo",
-    inactivo = "Inactivo",
+    ACTIVO = "ACTIVO",
+    INACTIVO = "INACTIVO",
 
 }
 
 enum Enum_TypeObjetive {
-    general = "General",
-    especifico = "Específico",
+    GENERAL = "GENERAL",
+    ESPECIFICO = "ESPECIFICO",
 
 }
 
 enum Enum_StatusIncription {
-    aceptada = "Aceptada",
-    rechazada = "Rechazada",
+    ACEPTADA = "ACEPTADA",
+    RECHAZADA = "RECHAZADA",
 
 }
 

@@ -1,10 +1,10 @@
-import { UserModel } from "../models/user"
+import { UserModel } from "../models/user";
 
 const resolvers = {
   Query: {
     Usuario: async (parent, args) => {
-      const users = await UserModel.find()
-      return users
+      const users = await UserModel.find();
+      return users;
     },
   },
   Mutation: {
@@ -16,10 +16,27 @@ const resolvers = {
         email: args.email,
         status: args.status,
         rol: args.rol,
-      })
-      return createUsers
+      });
+
+      if (Object.keys(args).includes("status")) {
+        createUsers.status = args.status;
+      }
+
+      return createUsers;
+    },
+
+    deleteUser: async (parent, args) => {
+      if (Object.keys(args).includes("_id")) {
+        const deletedUser = await UserModel.findOneAndDelete({ _id: args._id });
+        return deletedUser;
+      } else if (Object.keys(args).includes("email")) {
+        const deletedUser = await UserModel.findOneAndDelete({
+          email: args.email,
+        });
+        return deletedUser;
+      }
     },
   },
-}
+};
 
-export { resolvers }
+export { resolvers };
