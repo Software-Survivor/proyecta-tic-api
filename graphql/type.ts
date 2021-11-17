@@ -43,6 +43,19 @@ const typeDefs = gql`
       status: Enum_StatusUsers
       rol: Enum_Rol!
     ): Usuario
+
+    # editUser(
+    #   _id: String!
+    #   name: String!
+    #   lastname: String!
+    #   identification: String!
+    #   email: String!
+    #   status: Enum_StatusUsers
+    #   rol: Enum_Rol!
+    #   ): Usuario
+    
+    # Se puede eliminar por uno o mas campos si se usa la funcion findOneAndDelete en mogoose
+    deleteUser(_id: String, email: String): Usuario
   }
 `;
 

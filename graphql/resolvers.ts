@@ -11,15 +11,41 @@ const resolvers = {
   Mutation: {
     // Se debe llamar igual al items de la mutation en los type.ts
     createUser: async (parent, args) => {
-      const createUser = await UserModel.create({
+      const userCreated = await UserModel.create({
         name: args.name,
         lastname: args.lastname,
         identification: args.identification,
         email: args.email,
         rol: args.rol,
       });
-      return createUser;
+      if (Object.keys(args).includes("status")) {
+        userCreated.status = args.status;
+      }
+      return userCreated;
     },
+
+    // editUser: async (parent, args) => {
+    //   const userEdited = await UserModel.findByIdAndDelete(args._id, {
+    //     name: args.name,
+    //     lastname: args.lastname,
+    //     identification: args.identification,
+    //     email: args.email,
+    //     status: args.status,
+    //     rol: args.rol,
+    //   });
+    //   return userEdited;
+    // },
+
+    deleteUser: async (parent, args) => {
+      if (Object.keys(args).includes("email")) {
+        const userDeleted = await UserModel.findOneAndDelete({email: args.email});
+        return userDeleted;
+      } else if (Object.keys(args).includes("_id")) {
+        const userDeleted = await UserModel.findOneAndDelete({_id: args._id});
+        return userDeleted;
+      };
+    },
+
   },
 };
 
