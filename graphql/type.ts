@@ -32,7 +32,7 @@ const typeDefs = gql`
       name: String!
       lastname: String!
       identification: String!
-      email; String!
+      email: String!
       status: Enum_StatusUsers
       rol: Enum_Rol!
     ):User
@@ -41,7 +41,16 @@ const typeDefs = gql`
       _id:String! email:String
     ): User
 
-    e
+    editUser(
+      _id: String!
+      name: String!
+      lastname: String!
+      identification: String!
+      email: String!
+      status: Enum_StatusUsers
+      rol: Enum_Rol!
+    ):User  
+    
   }
 `;
 

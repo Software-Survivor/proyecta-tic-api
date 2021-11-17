@@ -36,6 +36,23 @@ const resolvers = {
         return deletedUser;
       }
     },
+
+    editUser: async (parent, args) =>{
+      const editUser = await UserModel.findOneAndUpdate({
+        name: args.name,
+        lastname: args.lastname,
+        identification: args.indentification,
+        email: args.email,
+        status: args.status,
+        rol: args.rol,
+      });
+
+      if (Object.keys(args).includes("status")) {
+        editUser.status = args.status;
+      }
+
+      return editUser;
+    }
   },
 };
 
