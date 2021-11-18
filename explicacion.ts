@@ -1,7 +1,7 @@
 import ConectBD from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/projects";
-import { } from "./models/enums";
+import { UserModel } from "./models/user/user";
+import { ProjectModel } from "./models/project/project";
+import { } from "./models/enum/enum";
 import { ObjetiveModel } from "./models/objective";
 
 

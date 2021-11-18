@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
-import { UserModel } from "./user";
-import { ProjectModel } from "./projects";
+import { UserModel } from "../user/user";
+import { ProjectModel } from "../project/project";
 
-import { Enum_StatusIncription } from "./enums";
+import { Enum_StatusIncription } from "../enum/enum";
 
 interface Inscriptions {
     status: Enum_StatusIncription;

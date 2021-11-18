@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
-import { Enum_TypeObjetive } from "./enums";
+import { Enum_ObjetiveType } from "./enum/enum";
 
 interface Objetive {
   description: string;
-  type: Enum_TypeObjetive;
+  type: Enum_ObjetiveType;
 }
 
 const ObjetiveSchema = new Schema<Objetive>({
@@ -13,7 +13,7 @@ const ObjetiveSchema = new Schema<Objetive>({
   },
   type: {
     type: String,
-    enum: Enum_TypeObjetive,
+    enum: Enum_ObjetiveType,
     required: true,
   }
 });

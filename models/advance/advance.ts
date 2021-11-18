@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { UserModel } from "./user";
+import { UserModel } from "../user/user";
 
 interface Progress {
   date: Date;

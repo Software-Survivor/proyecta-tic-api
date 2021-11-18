@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Enum_Rol, Enum_StatusUsers } from "./enums";
+import { Enum_Rol, Enum_StatusUsers } from "../enum/enum";
 
 interface User {
   email: string;
