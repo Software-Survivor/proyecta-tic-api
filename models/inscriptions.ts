@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { UserModel } from "./user";
-import { ProjectModel } from "./projectss";
+import { ProjectModel } from "./projects";
 
 import { Enum_StatusIncription } from "./enums";
 
