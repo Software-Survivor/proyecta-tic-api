@@ -1,15 +1,16 @@
 import { Schema, model } from "mongoose";
+import { ProjectModel } from "../project/project";
 import { UserModel } from "../user/user";
 
-interface Progress {
+interface Advancement {
   date: Date;
   description: string;
-  observation: [string];
+  observations: [string];
   project: Schema.Types.ObjectId;
   createdBy: Schema.Types.ObjectId;
 }
 
-const ProgressSchema = new Schema<Progress>({
+const AdvancementSchema = new Schema<Advancement>({
   date: {
     type: Date,
     required: true,
@@ -18,13 +19,14 @@ const ProgressSchema = new Schema<Progress>({
     type: String,
     required: true,
   },
-  observation: [
+  observations: [
     {
       type: String,
     },
   ],
   project: {
     type: Schema.Types.ObjectId,
+    ref: ProjectModel,
     required: true,
   },
   createdBy: {
@@ -34,6 +36,6 @@ const ProgressSchema = new Schema<Progress>({
   },
 });
 
-const ProgressModel = model("Progress", ProgressSchema, "progress");
+const AdvancementModel = model("Advancement", AdvancementSchema);
 
-export { ProgressModel };
+export { AdvancementModel };

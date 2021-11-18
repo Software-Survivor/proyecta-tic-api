@@ -13,6 +13,7 @@ type Usuario {
 }
 
 type Query {
+    #Estas constantes deben conincidir con los nombres en los query de los resolver 
     Usuario: [Usuario] #Devuelve una lista con todos los usuarios
     User(_id:String!): Usuario #Devuelve un solo usuario consultado por su id
 }

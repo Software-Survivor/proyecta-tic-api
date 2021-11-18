@@ -1,3 +1,4 @@
+// Este  modelo no de ha implemantado por temas de optimización
 import { Schema, model } from "mongoose";
 import { Enum_ObjetiveType } from "./enum/enum";
 

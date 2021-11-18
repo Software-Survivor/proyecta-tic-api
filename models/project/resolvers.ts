@@ -31,28 +31,28 @@ const resolversProject = {
       return projectCreated;
     },
 
-    // editProject: async (parent, args) => {
-    //   const projectEdited = await ProjectModel.findByIdAndUpdate(args._id, {
-    //     nameProject: args.nameProject,
-    //     budget: args.budget,
-    //     startDate: args.startDate,
-    //     endDate: args.endDate,
-    //     leader: args.leader,
-    //     statusProject: args.statusProject,
-    //     stageProject: args.stageProject,
-    //   });
-    //   return projectEdited;
-    // },
+    editProject: async (parent, args) => {
+      const projectEdited = await ProjectModel.findByIdAndUpdate(args._id, {
+        nameProject: args.nameProject,
+        budget: args.budget,
+        startDate: args.startDate,
+        endDate: args.endDate,
+        leader: args.leader,
+        statusProject: args.statusProject,
+        stageProject: args.stageProject,
+      });
+      return projectEdited;
+    },
 
-    // deleteProject: async (parent, args) => {
-    //   if (Object.keys(args).includes("email")) {
-    //     const projectDeleted = await ProjectModel.findOneAndDelete({email: args.email});
-    //     return projectDeleted;
-    //   } else if (Object.keys(args).includes("_id")) {
-    //     const projectDeleted = await ProjectModel.findOneAndDelete({_id: args._id});
-    //     return projectDeleted;
-    //   };
-    // },
+    deleteProject: async (parent, args) => {
+      if (Object.keys(args).includes("nameProject")) {
+        const projectDeleted = await ProjectModel.findOneAndDelete({email: args.email});
+        return projectDeleted;
+      } else if (Object.keys(args).includes("_id")) {
+        const projectDeleted = await ProjectModel.findOneAndDelete({_id: args._id});
+        return projectDeleted;
+      };
+    },
 
   },
 };
