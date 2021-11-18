@@ -1,3 +1,5 @@
+//////////////////////////  USERS   /////////////////////////
+
 enum Enum_Rol{
     ESTUDIANTE = 'ESTUDIANTE',
     LIDER = 'LIDER',
@@ -11,32 +13,41 @@ enum Enum_StatusUsers{
     NO_AUTORIZADO = 'NO_AUTORIZADO',
 }
 
-enum Enum_ProjectPhase {
-    iniciado = "Iniciado",
-    en_desarrollo = "En desarrollo",
-    terminado= "Terminado",
-    nula=''
+
+//////////////////////////  PROJECT   /////////////////////////
+
+enum Enum_ProjectStage {
+    INICIADO = "INICIADO",
+    EN_DESARROLLO = "EN_DESARROLLO",
+    TERMINADO= "TERMINADO",
+    NULO=''
 } 
 
 
-enum Enum_StatusProject {
-    activo = "Activo",
-    inactivo = "Inactivo",
+enum Enum_ProjectStatus {
+    ACTIVO = "ACTIVO",
+    INACTIVO = "INACTIVO",
 
 }
 
-enum Enum_TypeObjetive {
-    general = "General",
-    especifico = "Específico",
+
+//////////////////////////  OBJECTIVE   /////////////////////////
+
+enum Enum_ObjetiveType {
+    GENERAL = "GENERAL",
+    ESPECIFICO = "ESPECIFICO",
 
 }
+
+
+//////////////////////////  INCRIPTION   /////////////////////////
 
 enum Enum_StatusIncription {
-    aceptada = "Aceptada",
-    rechazada = "Rechazada",
+    ACEPTADA = "ACEPTADA",
+    RECHAZADA = "RECHAZADA",
 
 }
 
 
 
-export {Enum_Rol, Enum_StatusUsers, Enum_StatusProject, Enum_ProjectPhase, Enum_TypeObjetive, Enum_StatusIncription}
+export {Enum_Rol, Enum_StatusUsers, Enum_ProjectStage, Enum_ProjectStatus, Enum_ObjetiveType, Enum_StatusIncription}

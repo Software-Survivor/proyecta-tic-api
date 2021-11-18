@@ -1,21 +1,20 @@
 import { Schema, model } from "mongoose";
-import { Enum_StatusProject, Enum_ProjectPhase, Enum_TypeObjetive } from "./enums";
+import { Enum_ProjectStatus, Enum_ProjectStage, Enum_ObjetiveType } from "./enums";
 import { UserModel } from "./user";
-import { ObjetiveModel } from "./objective";
 
 interface Project {
-  name: string;
+  nameProject: string;
   budget: number;
   startDate: Date;
-  endData: Date;
-  projectPhase: Enum_ProjectPhase;
-  statusProject: Enum_StatusProject;
+  endDate: Date;
   leader: Schema.Types.ObjectId;
-  objective: [{description: String; type: Enum_TypeObjetive}];
+  statusProject: Enum_ProjectStatus;
+  stageProject: Enum_ProjectStage;
+  objective: [{description: String; typeObjective: Enum_ObjetiveType}];
 };
 
-const ProjectSchema = new Schema<Project>({
-  name: {
+const projectSchema = new Schema<Project>({
+  nameProject: {
     type: String,
     required: true,
   },
@@ -27,23 +26,24 @@ const ProjectSchema = new Schema<Project>({
     type: Date,
     required: true,
   },
-  endData: {
+  endDate: {
     type: Date,
     required: true,
   },
-  projectPhase: {
-    type: String,
-    enum: Enum_ProjectPhase,
-    default: Enum_ProjectPhase.nula,
-  },
   statusProject: {
     type: String,
-    enum: Enum_StatusProject,
-    default: Enum_StatusProject.inactivo,
+    enum: Enum_ProjectStatus,
+    default: Enum_ProjectStatus.INACTIVO,
+  },
+  stageProject: {
+    type: String,
+    enum: Enum_ProjectStage,
+    default: Enum_ProjectStage.NULO,
   },
   leader:{
       type: Schema.Types.ObjectId,
       ref: UserModel,
+      required: true,
   }, 
   objective: [
     {
@@ -51,16 +51,14 @@ const ProjectSchema = new Schema<Project>({
         type: String,
         required: true,
       },
-      type: {
+      typeObjective: {
         type:String,
-        enum: Enum_TypeObjetive,
+        enum: Enum_ObjetiveType,
         required: true,
-      }
-      
-      
-    }]
+      },
+    }],
 });
 
-const ProjectModel = model("Project", ProjectSchema);
+const ProjectModel = model("Project", projectSchema);
 
 export { ProjectModel };
