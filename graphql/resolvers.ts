@@ -1,4 +1,4 @@
-import { ProjectModel } from "../models/projectss";
+import { ProjectModel } from "../models/projects";
 import { UserModel } from "../models/user";
 
 const resolvers = {
