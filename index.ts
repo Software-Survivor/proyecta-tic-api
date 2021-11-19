@@ -13,18 +13,39 @@ import { UserModel } from "./models/user";
 const main = async () => {
   await ConectBD();
 
+
+  //Crear nuevo usuario
+
   /* await UserModel.create({
-        email: 'Ana@ana.com',
-        identification: '56321587',
-        name: 'Ana',
-        lastname: 'Lopez',
+        email: 'Juan@d.com',
+        identification: '112233',
+        name: 'Juan',
+        lastname: 'David',
         rol: Enum_Rol.LIDER,
         status:Enum_StatusUsers.AUTORIZADO,
     }).then((u) =>{
         console.log('Usuario creado satisfactoriamente', u)
     }).catch((e)=>{
         console.error('Error al crear el usuario', e)
-    }) */
+    })  */
+
+
+  //Actualizar un usuario por Id
+
+  /* await UserModel.findByIdAndUpdate('6197bd5679a650a88643b898', { status: Enum_StatusUsers.PENDIENTE })
+    .then((d) => { console.log('Usuario actualizado', d._id) })
+    .catch((e) => { console.log('error', e) })
+ */
+
+
+  //Eliminar un usuario por Id
+/* 
+  await UserModel.findByIdAndDelete('6197cd147d0857fb0844f08b')
+    .then((d) => { console.log(d, 'eliminado') })
+    .catch((e) => { console.log('error eliminando el usuario. error:', e) }) */
+
+
+  //Consultar Usuarios
 
   await UserModel.find()
     .then((u) => {
