@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors";
+import Cors from 'cors';
 import { ApolloServer } from "apollo-server-express";
 import dotenv from "dotenv";
 import ConectBD from "./db/db";
@@ -15,10 +15,12 @@ const server = new ApolloServer({
 
 });
 
+
+
 const app = express();
+app.use(Cors());
 
 app.use(express.json());
-app.use(cors());
 app.listen({ port: process.env.PORT || 4000 }, async () => {
     await ConectBD();
     await server.start();
