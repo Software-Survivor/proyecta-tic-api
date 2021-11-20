@@ -40,7 +40,9 @@ const resolversProject = {
         leader: args.leader,
         statusProject: args.statusProject,
         stageProject: args.stageProject,
-      });
+      }, 
+      {new: true}
+      );
       return projectEdited;
     },
 

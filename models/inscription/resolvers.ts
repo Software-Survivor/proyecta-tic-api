@@ -50,7 +50,8 @@ const resolverInscription = {
             statusInscription: args.statusInscription,
             dateStart: args.dateStart,
             dateEnd: args.dateEnd,
-        }
+        }, 
+        {new: true}
       );
       return inscriptionEdited;
     },

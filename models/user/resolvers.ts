@@ -38,7 +38,9 @@ const resolversUser = {
         email: args.email,
         status: args.status,
         rol: args.rol,
-      });
+      }, 
+      {new: true}
+      );
       return userEdited;
     },
 

@@ -40,7 +40,9 @@ const resolversAdvancement = {
           observation: args.observation,
           project: args.project,
           createdBy: args.createdBy,
-        } );
+        }, 
+        {new: true}
+         );
       return advancementEdited;
     },
 
