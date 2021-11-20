@@ -17,7 +17,7 @@ const projectTypes = gql`
         budget: Float!
         startDate: Date!
         endDate: Date!
-        leader: Usuario!
+        leader: User!
         statusProject: Enum_ProjectStatus!
         stageProject: Enum_ProjectStage!
         objective: [Objective]
