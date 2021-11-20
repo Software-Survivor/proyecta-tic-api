@@ -34,6 +34,7 @@ const typesEnums = gql`
   enum Enum_StatusIncription {
     ACEPTADA
     RECHAZADA
+    PENDIENTE
   }
 `;
 

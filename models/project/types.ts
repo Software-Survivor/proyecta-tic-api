@@ -22,6 +22,8 @@ const typesProject = gql`
     statusProject: Enum_ProjectStatus!
     stageProject: Enum_ProjectStage!
     objective: [Objective]
+    advancement: [Advancement]
+    inscription:[Inscription]
   }
 
   # Cuando se ejecuta la consulta, esta devuelve todo lo que hay en el modelo usuario. Este query llama al Query usuario que está en los resolver, esta su vez ejecuta la consulta.

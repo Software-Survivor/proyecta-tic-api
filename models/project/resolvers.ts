@@ -3,14 +3,14 @@ import { ProjectModel } from "./project";
 const resolversProject = {
   Query: {
     Projects: async (parent, args) => {
-      const project = await ProjectModel.find().populate('leader');
+      const project = await ProjectModel.find().populate('leader').populate('advancement').populate('inscription');
       return project;
     },
 
     Project: async (parent, args) => {
-      const project = await ProjectModel.findOne({_id: args._id});
+      const project = await ProjectModel.findOne({_id: args._id}).populate('leader').populate('advancement').populate('inscription');
       return project;
-    }
+    },
 
   },
   Mutation: {

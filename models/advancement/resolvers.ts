@@ -34,16 +34,13 @@ const resolversAdvancement = {
     },
 
     editAdvancement: async (parent, args) => {
-      const advancementEdited = await AdvancementModel.findByIdAndUpdate(
-        args._id,
-        {
+      const advancementEdited = await AdvancementModel.findByIdAndUpdate(args._id, {
           date: args.date,
           description: args.description,
           observation: args.observation,
           project: args.project,
           createdBy: args.createdBy,
-        }
-      );
+        } );
       return advancementEdited;
     },
 

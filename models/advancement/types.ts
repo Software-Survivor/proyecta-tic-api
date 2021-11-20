@@ -7,7 +7,7 @@ type Advancement {
   _id: ID!
   date: Date!
   description: String!
-  observations: [String]
+  observations: [String]!
   project: Project!
   createdBy: Usuario!
 }
@@ -22,20 +22,21 @@ type Mutation {
     createAdvancement(
       date: Date!
       description: String!
-      observations: [String!]
+      observations: [String]!
       project: String!
       createdBy: String!
     ): Advancement
 
     editAdvancement(
-      date: Date!
-      description: String!
-      observations: [String!]
-      project: String!
-      createdBy: String!
+      _id: String!
+      date: Date
+      description: String
+      observations: [String]
+      project: String
+      createdBy: String
       ): Advancement
     
-    deleteAdvancement(_id: String, email: String): Advancement
+    deleteAdvancement(_id: String): Advancement
   }
 `;
 

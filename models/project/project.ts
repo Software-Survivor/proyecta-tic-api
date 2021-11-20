@@ -11,6 +11,7 @@ interface Project {
   statusProject: Enum_ProjectStatus;
   stageProject: Enum_ProjectStage;
   objective: [{description: String; typeObjective: Enum_ObjetiveType}];
+ 
 };
 
 const projectSchema = new Schema<Project>({
@@ -58,6 +59,18 @@ const projectSchema = new Schema<Project>({
       },
     }],
 });
+
+projectSchema.virtual('advancement',{
+  ref: 'Advancement', //Este nombre debe ser igual al nombre que esta en el modelo de Advacement
+  localField: '_id',
+  foreignField: 'project' // Este nombre debe ser igual al del modelo de advancement
+})
+
+projectSchema.virtual('inscription',{
+  ref: 'Inscription', //Este nombre debe ser igual al nombre que esta en el modelo de Incription
+  localField: '_id',
+  foreignField: 'project' // Este nombre debe ser igual al del modelo de incription
+})
 
 const ProjectModel = model("Project", projectSchema);
 

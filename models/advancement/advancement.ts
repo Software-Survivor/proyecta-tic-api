@@ -34,7 +34,12 @@ const AdvancementSchema = new Schema<Advancement>({
     ref: UserModel,
     required: true,
   },
-});
+},
+{
+  toJSON:{virtuals: true},
+  toObject:{virtuals: true},
+}
+);
 
 const AdvancementModel = model("Advancement", AdvancementSchema);
 

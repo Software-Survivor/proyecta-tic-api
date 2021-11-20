@@ -1,31 +1,17 @@
 import { Schema, model } from "mongoose";
 import { UserModel } from "../user/user";
 import { ProjectModel } from "../project/project";
-
 import { Enum_StatusIncription } from "../enum/enum";
 
-interface Inscriptions {
-    status: Enum_StatusIncription;
-    dateAdmission: Date;
-    dateDischarge: Date;
-    project: Schema.Types.ObjectId;
-    student: Schema.Types.ObjectId;
+interface Inscription {
+  project: Schema.Types.ObjectId;
+  student: Schema.Types.ObjectId;
+  statusInscription: Enum_StatusIncription;
+  dateStart: Date;
+  dateEnd: Date;
 }
 
-const InscriptionsSchema = new Schema<Inscriptions>({
-    status: {
-        type: String,
-        enum: Enum_StatusIncription, 
-        required: true,
-    },
-    dateAdmission: {
-      type: Date,
-      required: true,
-    },
-    dateDischarge: {
-      type: Date,
-      required: true,
-    },
+const inscriptionSchema = new Schema<Inscription>({
   project: {
     type: Schema.Types.ObjectId,
     ref: ProjectModel,
@@ -36,12 +22,30 @@ const InscriptionsSchema = new Schema<Inscriptions>({
     ref: UserModel,
     required: true,
   },
-});
-
-const InscriptionsModel = model(
-  "Inscriptions",
-  InscriptionsSchema,
-  "inscriptions"
+  statusInscription: {
+    type: String,
+    enum: Enum_StatusIncription,
+    default: Enum_StatusIncription.PENDIENTE,
+    required: true,
+  },
+  dateStart: {
+    type: Date,
+    required: true,
+  },
+  dateEnd: {
+    type: Date,
+    required: true,
+  },
+}, 
+{
+  toJSON:{virtuals: true},
+  toObject:{virtuals: true},
+}
 );
 
-export { InscriptionsModel };
+const InscriptionModel = model(
+  "Inscription",
+  inscriptionSchema
+);
+
+export { InscriptionModel };
