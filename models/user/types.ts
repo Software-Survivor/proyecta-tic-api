@@ -8,8 +8,7 @@ type Usuario {
   lastname: String!
   identification: String!
   email: String!
-  status: Enum_StatusUsers
-  rol: Enum_Rol!
+  status: Enum_StatusUsers!
 }
 
 type Query {
