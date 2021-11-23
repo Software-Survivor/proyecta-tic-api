@@ -21,6 +21,7 @@ const projectTypes = gql`
         statusProject: Enum_ProjectStatus!
         stageProject: Enum_ProjectStage!
         objective: [Objective]
+        advancement: [Advancement]
     }
     type Query {
         Projects: [Project]
