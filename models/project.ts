@@ -4,9 +4,7 @@ import {
   Enum_ProjectPhase,
   Enum_TypeObjetive,
 } from "./enums";
-import { UserModel } from "./user";
-import { ObjetiveModel } from "./objective";
-
+import { UserModel } from './user/user'
 interface Project {
   name: string;
   budget: number;

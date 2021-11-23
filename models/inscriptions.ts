@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { UserModel } from "./user";
+import { UserModel } from "./user/user";
 import { ProjectModel } from "./project";
 
 import { Enum_StatusIncription } from "./enums";

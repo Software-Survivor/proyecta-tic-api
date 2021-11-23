@@ -1,11 +1,10 @@
+// Este  modelo no de ha implemantado por temas de optimización
 import { Schema, model } from "mongoose";
-import { Enum_TypeObjetive } from "./enums";
-import { ProjectModel } from "./project";
+import { Enum_ObjetiveType } from "./enum/enum";
 
 interface Objetive {
   description: string;
-  type: Enum_TypeObjetive;
-  project: Schema.Types.ObjectId;
+  type: Enum_ObjetiveType;
 }
 
 const ObjetiveSchema = new Schema<Objetive>({
@@ -15,12 +14,8 @@ const ObjetiveSchema = new Schema<Objetive>({
   },
   type: {
     type: String,
-    enum: Enum_TypeObjetive,
+    enum: Enum_ObjetiveType,
     required: true,
-  },
-  project: {
-    type: Schema.Types.ObjectId,
-    ref: ProjectModel,
   },
 });
 
