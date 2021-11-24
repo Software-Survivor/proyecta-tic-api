@@ -4,8 +4,8 @@ const resolversUser = {
   Query: {
     Users: async (parent, args) => {
       // Consulta todos los usuarios de la base de datos
-      const usuarios = await UserModel.find();
-      return usuarios;
+      const users = await UserModel.find();
+      return users;
     },
     User: async (parent, args) => {
       const user = await UserModel.findOne({_id: args._id});

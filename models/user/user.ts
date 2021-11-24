@@ -4,6 +4,7 @@ import { Enum_Rol, Enum_StatusUsers } from "../enum/enum";
 interface User {
   email: string;
   identification: string;
+  password: string;
   name: string;
   lastname: string;
   rol: Enum_Rol;
@@ -23,6 +24,10 @@ const UserSchema = new Schema<User>({
       },
       message: "El formato del correo es erróneo"
     },
+  },
+  password: {
+    type: String,
+    required: true,
   },
   identification: {
     type: String,
