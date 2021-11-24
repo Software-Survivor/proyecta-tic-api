@@ -9,7 +9,7 @@ type Advancement {
   description: String!
   observations: [String]!
   project: Project!
-  createdBy: Usuario!
+  createdBy: User!
 }
 
 type Query {
