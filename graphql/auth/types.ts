@@ -17,7 +17,16 @@ const typesAuth = gql`
       rol: Enum_Rol!
       password: String!
     ): Token!
+
+    login(
+      email: String!
+      password: String!
+    ): Token
+    
+    validateToken: Token
   }
+
+ 
 `;
 
 export { typesAuth };
