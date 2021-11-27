@@ -41,6 +41,12 @@ const projectResolvers = {
             }, {new: true});
             return projectEdited;
         },
+        deleteProject: async (parent, args)=>{
+            const projectDeleted = await ProjectModel.findOneAndDelete({
+                _id: args._id,
+            });
+            return projectDeleted;
+        },
         
     },
 };
