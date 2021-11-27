@@ -33,6 +33,7 @@ enum Enum_ObjetiveType {
 enum Enum_StatusIncription {
     ACEPTADA = "ACEPTADA",
     RECHAZADA = "RECHAZADA",
+    PENDIENTE = "PENDIENTE",
 
 }
 

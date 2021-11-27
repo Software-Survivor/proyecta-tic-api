@@ -33,7 +33,7 @@ const userResolvers = {
         lastname: args.lastname,
         rol: args.rol,
         status: args.status,
-      });
+      }, {new: true});
       return editedUser;
     },
     deleteUser: async (parent, args) => {

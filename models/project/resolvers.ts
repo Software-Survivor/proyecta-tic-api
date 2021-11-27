@@ -38,7 +38,7 @@ const projectResolvers = {
                 statusProject: args.statusProject,
                 stageProject: args.stageProject,
                 objective: args.objective,
-            });
+            }, {new: true});
             return projectEdited;
         },
         
