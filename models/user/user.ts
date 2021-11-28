@@ -3,6 +3,7 @@ import { Enum_Rol, Enum_StatusUsers } from '../enums/enums';
 
 interface User {
     email: string;
+    pasword: string;
     identification: string;
     name: string;
     lastname: string;
@@ -20,6 +21,10 @@ const UserSchema = new Schema<User> ({
                 return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
             }
         }
+    },
+    pasword:{
+        type: String,
+        required: true,
     },
     identification:{
         type: String,
