@@ -52,6 +52,8 @@ const resolversAdvancement = {
       });
       return advancementDeleted;
     },
+
+    
   },
 };
 

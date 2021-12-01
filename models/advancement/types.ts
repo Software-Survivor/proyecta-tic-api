@@ -37,6 +37,8 @@ type Mutation {
       ): Advancement
     
     deleteAdvancement(_id: String): Advancement
+    
+    
   }
 `;
 

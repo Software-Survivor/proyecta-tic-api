@@ -44,9 +44,27 @@ const resolversAuth = {
       };
     },
 
-    validateToken: async (parent, args, context) => {
-      console.log("context: ", context)
-    }
+    refreshToken: async (parent, args, context) => {
+      if(!context.userData){
+        return {
+          error: "token no válido"
+        };
+      } else {
+        console.log("context.userData: ", context.userData);
+        return {
+          token: generateToken({
+            _id: context.userData._id,
+            name: context.userData.name,
+            lastname: context.userData.lastname,
+            identification: context.userData.identification,
+            email: context.userData.email,
+            rol: context.userData.rol,
+          }),
+        };
+      }
+    },
+
+
   },
 };
 

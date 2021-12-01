@@ -54,6 +54,18 @@ const UserSchema = new Schema<User>({
   },
 });
 
+UserSchema.virtual('inscriptions', {
+  ref: "Inscription",
+  localField: "_id",
+  foreignField: "student"
+})
+
+UserSchema.virtual('advancementCreated', {
+  ref: "Advancement",
+  localField: "_id",
+  foreignField: "createdBy"
+})
+
 const UserModel = model("User", UserSchema);
 
 export { UserModel };

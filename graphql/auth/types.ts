@@ -23,7 +23,7 @@ const typesAuth = gql`
       password: String!
     ): Token
     
-    validateToken: Token
+    refreshToken: Token
   }
 
  

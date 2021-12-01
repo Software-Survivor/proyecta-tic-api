@@ -12,6 +12,21 @@ const typesProject = gql`
     typeObjective: Enum_ObjetiveType!
   }
 
+  input fieldObjective {
+    description: String!
+    typeObjective: Enum_ObjetiveType!
+  }
+
+  input fieldsProject{
+    nameProject: String
+    budget: Float
+    startDate: Date
+    endDate: Date
+    leader: String
+    statusProject: Enum_ProjectStatus
+    stageProject: Enum_ProjectStage
+  }
+
   type Project {
     _id: ID!
     nameProject: String!
@@ -48,18 +63,27 @@ const typesProject = gql`
 
     editProject(
       _id: String!
-      nameProject: String!
-      budget: Float!
-      startDate: Date!
-      endDate: Date!
-      leader: String!
-      statusProject: Enum_ProjectStatus!
-      stageProject: Enum_ProjectStage!
-      objective: [inputObjective]
+      fields: fieldsProject!
     ): Project
 
     # Se puede eliminar por uno o mas campos si se usa la funcion findOneAndDelete en mogoose
     deleteProject(_id: String, nameProject: String): Project
+
+    createObjective(
+      idProject: String!,
+      field:fieldObjective!
+    ): Project
+
+    editObjective(
+      idProject: String!,
+      indexObjective: Int!,
+      field:fieldObjective!
+    ): Project
+
+    deleteObjective(
+      idProject: String!,
+      idObjective: String!,
+    ):Project
   }
 `;
 

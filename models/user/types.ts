@@ -10,6 +10,9 @@ type User {
   email: String!
   status: Enum_StatusUsers
   rol: Enum_Rol!
+  inscriptions: [Inscription]
+  createdBy: [Advancement]
+  projectsLed: [Project]
 }
 
 type Query {

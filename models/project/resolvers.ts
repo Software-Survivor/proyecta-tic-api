@@ -3,15 +3,20 @@ import { ProjectModel } from "./project";
 const resolversProject = {
   Query: {
     Projects: async (parent, args) => {
-      const project = await ProjectModel.find().populate('leader').populate('advancement').populate('inscription');
+      const project = await ProjectModel.find()
+        .populate("leader")
+        .populate("advancement")
+        .populate("inscription");
       return project;
     },
 
     Project: async (parent, args) => {
-      const project = await ProjectModel.findOne({_id: args._id}).populate('leader').populate('advancement').populate('inscription');
+      const project = await ProjectModel.findOne({ _id: args._id })
+        .populate("leader")
+        .populate("advancement")
+        .populate("inscription");
       return project;
     },
-
   },
   Mutation: {
     createProject: async (parent, args) => {
@@ -32,30 +37,75 @@ const resolversProject = {
     },
 
     editProject: async (parent, args) => {
-      const projectEdited = await ProjectModel.findByIdAndUpdate(args._id, {
-        nameProject: args.nameProject,
-        budget: args.budget,
-        startDate: args.startDate,
-        endDate: args.endDate,
-        leader: args.leader,
-        statusProject: args.statusProject,
-        stageProject: args.stageProject,
-      }, 
-      {new: true}
+      const projectEdited = await ProjectModel.findByIdAndUpdate(
+        args._id,
+        {
+          ...args.fields,
+        },
+        { new: true }
       );
       return projectEdited;
     },
 
     deleteProject: async (parent, args) => {
       if (Object.keys(args).includes("nameProject")) {
-        const projectDeleted = await ProjectModel.findOneAndDelete({email: args.email});
+        const projectDeleted = await ProjectModel.findOneAndDelete({
+          email: args.email,
+        });
         return projectDeleted;
       } else if (Object.keys(args).includes("_id")) {
-        const projectDeleted = await ProjectModel.findOneAndDelete({_id: args._id});
+        const projectDeleted = await ProjectModel.findOneAndDelete({
+          _id: args._id,
+        });
         return projectDeleted;
-      };
+      }
     },
 
+    createObjective: async (parent, args) => {
+      const objectiveCreated = await ProjectModel.findByIdAndUpdate(
+        args.idProject,
+        {
+          $addToSet: {
+            objective: { ...args.field },
+          },
+        },
+        { new: true }
+      );
+
+      return objectiveCreated;
+    },
+
+    editObjective: async (parent, args) => {
+      const objectiveEdited = await ProjectModel.findByIdAndUpdate(
+        args.idProject,
+        {
+          $set: {
+            [`objective.${args.indexObjective}.description`]:
+              args.field.description,
+            [`objective.${args.indexObjective}.typeObjective`]:
+              args.field.typeObjective,
+          },
+        },
+        { new: true }
+      );
+
+      return objectiveEdited;
+    },
+
+    deleteObjective: async (parent, args) => {
+      const objectiveDeleted = await ProjectModel.findByIdAndUpdate(
+        { _id: args.idProject },
+        {
+          $pull: {
+            objective: {
+              _id: args.idObjective,
+            },
+          },
+        },
+        { new: true }
+      );
+      return objectiveDeleted;
+    },
   },
 };
 
