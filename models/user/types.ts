@@ -21,7 +21,7 @@ type Query {
 type Mutation {
     # El nombre createUser puede ser cualquier otro nombre, recibe unos inputs y lo que va despues de los dos puntos 
     # es lo que devuelve. En este caso regresamos un objeto de tipo Usuario. No se le ponen los corchetes porque solo 
-    # se está crando un registro. Al final se ejecuta un resolve que se deben llamar igual al tipo "Mutation".
+    # se está creando un registro. Al final se ejecuta un resolve que se deben llamar igual al tipo "Mutation".
     createUser(
       name: String!
       lastname: String!

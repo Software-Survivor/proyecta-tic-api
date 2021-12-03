@@ -17,33 +17,34 @@ const UserSchema = new Schema<User>({
     unique: true,
     validate: {
       validator: (email) => {
-        if (email.includes("@") && email.includes(".")) {
-          return true;
-        } else {
-          return false;
-        }
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email); // Expresión regular para validar el formato del correo
       },
-      message: "El formato del correo es erróneo",
+      message: 'El formato del correo electrónico es incorrecto.',
     },
   },
+
   identification: {
     type: String,
     required: true,
     unique: true,
   },
+
   name: {
     type: String,
     required: true,
   },
+
   lastname: {
     type: String,
     required: true,
   },
+
   rol: {
     type: String,
     required: true,
     enum: Enum_Rol,
   },
+
   status: {
     type: String,
     enum: Enum_StatusUsers,

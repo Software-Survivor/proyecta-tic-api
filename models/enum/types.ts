@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 const typesEnums = gql`
-  # Se definen los enum fuera de cada tipo, y sun contenido debe ir en mayúscula por asi lo define GraphQl
+  # Se definen los enum fuera de cada tipo, y sun contenido debe ir en mayúscula porque asi lo define GraphQl
   enum Enum_Rol {
     ESTUDIANTE
     LIDER
