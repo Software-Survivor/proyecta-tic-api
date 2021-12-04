@@ -31,8 +31,8 @@ const typesProject = gql`
     _id: ID!
     nameProject: String!
     budget: Float!
-    startDate: Date!
-    endDate: Date!
+    startDate: Date
+    endDate: Date
     leader: User!
     statusProject: Enum_ProjectStatus!
     stageProject: Enum_ProjectStage!
@@ -45,6 +45,10 @@ const typesProject = gql`
   type Query {
     Projects: [Project]
     Project(_id: String!): Project
+    # /////////////////////////// QUERY SOLICITADOS POR EL FRONTEND  ////////////////////////////////
+    ListProjects: [Project]
+    DetailProject(_id: String!): Project
+
   }
 
   # Sirve para cambiar algo en la base de datos: CREAR, BORRAR, EDITAR
@@ -53,11 +57,11 @@ const typesProject = gql`
     createProject(
       nameProject: String!
       budget: Float!
-      startDate: Date!
-      endDate: Date!
+      startDate: Date
+      endDate: Date
       leader: String!
-      statusProject: Enum_ProjectStatus!
-      stageProject: Enum_ProjectStage!
+      statusProject: Enum_ProjectStatus
+      stageProject: Enum_ProjectStage
       objective: [inputObjective]
     ): Project
 

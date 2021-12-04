@@ -9,7 +9,6 @@ const resolversProject = {
         .populate("inscription");
       return project;
     },
-
     Project: async (parent, args) => {
       const project = await ProjectModel.findOne({ _id: args._id })
         .populate("leader")
@@ -17,7 +16,82 @@ const resolversProject = {
         .populate("inscription");
       return project;
     },
+    /////////////////////////// QUERY SOLICITADOS POR EL FRONTEND  ////////////////////////////////
+
+    ListProjects: async (parent, args) => {
+      const listProjects = await ProjectModel.find();
+      return listProjects;
+      /////// COPIAR ESTE VALOR EN EL FRONT /////////
+      //  query ListProjects {
+      //   ListProjects {
+      //     _id
+      //     nameProject
+      //     budget
+      //     endDate
+      //     startDate
+      //     statusProject
+      //     stageProject
+      //   }
+      // }
+    },
+    DetailProject: async (parent, args) => {
+      const detailProjects = await ProjectModel.findOne({ _id: args._id })
+        .populate([
+          {
+            path: "advancement",
+            populate: {
+              path: "createdBy",
+            },
+          },
+        ])
+        .populate([
+          {
+            path: "inscription",
+            populate: {
+              path: "student",
+            },
+          },
+        ]).populate("leader");
+      return detailProjects;
+         /////// COPIAR ESTE VALOR EN EL FRONT /////////
+    // query DetailProject($id: String!) {
+    //   DetailProject(_id: $id) {
+    //     nameProject
+    //     budget
+    //     startDate
+    //     endDate
+    //     statusProject
+    //     stageProject
+    //     leader {
+    //       name
+    //       lastname
+    //     }
+    //     advancement {
+    //       date
+    //       createdBy {
+    //         name
+    //       }
+    //     }
+    //     inscription {
+    //       dateStart
+    //       dateEnd
+    //       student {
+    //         name
+    //         lastname
+    //       }
+    //     }
+    //     objective {
+    //       description
+    //       typeObjective
+    //     }
+    //   }
+    // }
+    },
+
+    /////////////////////////// QUERY SOLICITADOS POR EL FRONTEND  ////////////////////////////////
+ 
   },
+
   Mutation: {
     createProject: async (parent, args) => {
       const projectCreated = await ProjectModel.create({

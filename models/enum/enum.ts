@@ -20,7 +20,7 @@ enum Enum_ProjectStage {
     INICIADO = "INICIADO",
     EN_DESARROLLO = "EN_DESARROLLO",
     TERMINADO= "TERMINADO",
-    NULO=''
+    NULO='NULO'
 } 
 
 
