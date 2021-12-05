@@ -10,6 +10,10 @@ const projectTypes = gql`
         description: String!
         typeObjective: Enum_ObjetiveType!
     }
+    input objectiveFields{
+        description: String!
+        typeObjective: String!
+    }
     type Project {
         _id: ID!
         nameProject: String!
@@ -53,6 +57,11 @@ const projectTypes = gql`
             idProject: String!
             description: String!
             typeObjective: Enum_ObjetiveType!
+        ): Project
+        editObjective(
+            idProject: String!
+            indexObjective: Int!
+            objectiveFields: objectiveFields!
         ): Project
     }
 

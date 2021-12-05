@@ -60,12 +60,22 @@ const projectResolvers = {
                     $addToSet:{
                         objective: {
                             description: args.description,
-                            type: args.type,
+                            typeObjective: args.typeObjective,
                         }
                     }
             }, { new: true });
             return objectiveCreated;
-        }
+        },
+        editObjective: async (parent, args)=>{
+            const objectiveEdited = await ProjectModel.findByIdAndUpdate(
+                args.idProject,{
+                    $set:{
+                        [`objective.${args.indexObjective}.description`]: args.objectiveFields.description,
+                        [`objective.${args.indexObjective}.typeObjective`]: args.objectiveFields.typeObjective,
+                    },
+                }, { new: true });
+                return objectiveEdited;
+        },
     },
 };
 export { projectResolvers };
