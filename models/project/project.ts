@@ -24,11 +24,11 @@ const projectSchema = new Schema<Project> ({
     },
     startDate: {
         type: Date,
-        required:true,
+        required: false,
     },
     endDate: {
         type: Date,
-        required: true,
+        required: false,
     },
     statusProject: {
         type: String,
@@ -65,6 +65,11 @@ const projectSchema = new Schema<Project> ({
 );
 projectSchema.virtual('advancement',{
   ref: 'Advancement',
+  localField: '_id',
+  foreignField: 'project',
+});
+projectSchema.virtual('inscription',{
+  ref: 'Inscription', 
   localField: '_id',
   foreignField: 'project',
 });

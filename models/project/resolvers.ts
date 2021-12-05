@@ -3,11 +3,16 @@ import { ProjectModel } from './project';
 const projectResolvers = {
     Query:{
         Projects: async(parent, args)=>{
-            const projects = await ProjectModel.find().populate('advancement');
+            const projects = await ProjectModel.find()
+            .populate('advancement')
+            .populate('leader');
             return projects;
         },
         Project: async(parent, args)=>{
-            const project = await ProjectModel.findOne({ _id: args._id });
+            const project = await ProjectModel.findOne({ _id: args._id })
+            .populate('advancement')
+            .populate('leader')
+            .populate('inscription');
             return project;
         },
     },
@@ -47,7 +52,20 @@ const projectResolvers = {
             });
             return projectDeleted;
         },
-        
+        createObjective: async (parent, args)=>{
+            const objectiveCreated = await ProjectModel.findByIdAndUpdate(
+                args.idProject,{
+                    //funcion de mongo que permite agregar un elemento a un array
+                    //las funciones de mongo siempre se ponen con $
+                    $addToSet:{
+                        objective: {
+                            description: args.description,
+                            type: args.type,
+                        }
+                    }
+            }, { new: true });
+            return objectiveCreated;
+        }
     },
 };
 export { projectResolvers };
