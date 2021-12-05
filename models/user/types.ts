@@ -33,11 +33,11 @@ type Mutation {
 
     editUser(
       _id: String!
-      name: String
-      lastname: String
-      identification: String
-      email: String
-      status: Enum_StatusUsers
+      name: String!
+      lastname: String!
+      identification: String!
+      email: String!
+      status: Enum_StatusUsers!
       rol: Enum_Rol
       ): Usuario
     

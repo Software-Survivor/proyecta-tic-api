@@ -41,7 +41,6 @@ const resolversUser = {
           identification: args.identification,
           email: args.email,
           status: args.status,
-          rol: args.rol,
         },
         { new: true }
       );
