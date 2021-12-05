@@ -50,5 +50,15 @@ const UserSchema = new Schema<User> ({
         default: Enum_StatusUsers.PENDIENTE,
     },
 });
+UserSchema.virtual('advancement', {
+    ref:'Advancement',
+    localField: '_id',
+    foreignField: 'createdBy',
+})
+UserSchema.virtual('inscription', {
+    ref:'Inscription',
+    localField: '_id',
+    foreignField: 'student',
+})
 const UserModel = model('User', UserSchema );
 export { UserModel };
