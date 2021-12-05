@@ -76,6 +76,19 @@ const projectResolvers = {
                 }, { new: true });
                 return objectiveEdited;
         },
+        deleteObjective: async (parent, args)=>{
+            const objectiveDeleted = await ProjectModel.findByIdAndUpdate(
+                {_id: args.idProject},
+                {
+                    $pull:{
+                        objective: {
+                            _id: args.idObjective,
+                        },
+                    },
+                }, {new: true}
+            );
+            return objectiveDeleted;
+        }
     },
 };
 export { projectResolvers };

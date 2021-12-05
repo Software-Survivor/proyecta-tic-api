@@ -63,6 +63,10 @@ const projectTypes = gql`
             indexObjective: Int!
             objectiveFields: objectiveFields!
         ): Project
+        deleteObjective(
+            idProject: String!
+            idObjective:String!
+        ):Project
     }
 
 `;
