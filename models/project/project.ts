@@ -25,11 +25,11 @@ const projectSchema = new Schema<Project>({
   },
   startDate: {
     type: Date,
-    required: true,
+    required: false,
   },
   endDate: {
     type: Date,
-    required: true,
+    required: false,
   },
   statusProject: {
     type: String,

@@ -2,18 +2,35 @@ import { UserModel } from "./user";
 
 const resolversUser = {
   Query: {
-
-    Usuario: async (parent, args) => {
+    Users: async (parent, args, context) => {
       // Consulta todos los usuarios de la base de datos
-      const usuarios = await UserModel.find();
-      return usuarios;
+
+      const users = await UserModel.find().populate([
+        {
+          path: "inscriptions",
+          populate: {
+            path: "project",
+            populate: {
+              path: "leader",
+            },
+          },
+        },
+      ]);
+      return users;
+
+      /////////////////// AGRAGAR ESTE CODIGO PARA VALIDARCION DE ROLES DESDE EL BACK  /////////////
+      // if(context.userData.rol === 'ADMINISTRADOR'){
+      //   const users = await UserModel.find();
+      //   return users;
+      // }else{
+      //   return null;
+      // }
     },
 
     User: async (parent, args) => {
       const user = await UserModel.findOne({ _id: args._id });
       return user;
     },
-
   },
   
   Mutation: {
@@ -32,21 +49,6 @@ const resolversUser = {
       return userCreated;
     },
 
-    editUser: async (parent, args) => {
-      const userEdited = await UserModel.findByIdAndUpdate(
-        args._id,
-        {
-          name: args.name,
-          lastname: args.lastname,
-          identification: args.identification,
-          email: args.email,
-          status: args.status,
-        },
-        { new: true }
-      );
-      return userEdited;
-    },
-
     deleteUser: async (parent, args) => {
       if (Object.keys(args).includes("email")) {
         const userDeleted = await UserModel.findOneAndDelete({
@@ -57,6 +59,22 @@ const resolversUser = {
         const userDeleted = await UserModel.findOneAndDelete({ _id: args._id });
         return userDeleted;
       }
+    },
+
+    editUser: async (parent, args) => {
+      const userEdited = await UserModel.findByIdAndUpdate(
+        args._id,
+        {
+          name: args.name,
+          lastname: args.lastname,
+          identification: args.identification,
+          email: args.email,
+          status: args.status,
+          rol: args.rol,
+        },
+        { new: true }
+      );
+      return userEdited;
     },
   },
 };

@@ -4,7 +4,7 @@ const typesInscription = gql`
   type Inscription {
     _id: ID!
     project: Project!
-    student: Usuario!
+    student: User!
     statusInscription: Enum_StatusIncription!
     dateStart: Date
     dateEnd: Date
