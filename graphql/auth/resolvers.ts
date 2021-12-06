@@ -7,7 +7,7 @@ const resolversAuth = {
     register: async (parent, args) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(args.password, salt);
-      const userCrated = await UserModel.create({
+      const userCreated = await UserModel.create({
         name: args.name,
         lastname: args.lastname,
         password: hashedPassword,
@@ -18,12 +18,12 @@ const resolversAuth = {
       console.log("crear usuario", args);
       return {
         token: generateToken({
-          _id: userCrated._id,
-          name: userCrated.name,
-          lastname: userCrated.lastname,
-          identification: userCrated.identification,
-          email: userCrated.email,
-          rol: userCrated.rol,
+          _id: userCreated._id,
+          name: userCreated.name,
+          lastname: userCreated.lastname,
+          identification: userCreated.identification,
+          email: userCreated.email,
+          rol: userCreated.rol,
         }),
       };
     },
