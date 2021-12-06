@@ -5,15 +5,17 @@ const resolversUser = {
     Users: async (parent, args, context) => {
       // Consulta todos los usuarios de la base de datos
 
-      const users = await UserModel.find().populate([{
-        path:"inscriptions",
-        populate:{
-          path:"project",
-          populate:{
-            path:"leader"
-          }
-        }
-      }]);
+      const users = await UserModel.find().populate([
+        {
+          path: "inscriptions",
+          populate: {
+            path: "project",
+            populate: {
+              path: "leader",
+            },
+          },
+        },
+      ]);
       return users;
 
       /////////////////// AGRAGAR ESTE CODIGO PARA VALIDARCION DE ROLES DESDE EL BACK  /////////////
@@ -23,7 +25,6 @@ const resolversUser = {
       // }else{
       //   return null;
       // }
-
     },
     User: async (parent, args) => {
       const user = await UserModel.findOne({ _id: args._id });
@@ -46,6 +47,18 @@ const resolversUser = {
       return userCreated;
     },
 
+    deleteUser: async (parent, args) => {
+      if (Object.keys(args).includes("email")) {
+        const userDeleted = await UserModel.findOneAndDelete({
+          email: args.email,
+        });
+        return userDeleted;
+      } else if (Object.keys(args).includes("_id")) {
+        const userDeleted = await UserModel.findOneAndDelete({ _id: args._id });
+        return userDeleted;
+      }
+    },
+
     editUser: async (parent, args) => {
       const userEdited = await UserModel.findByIdAndUpdate(
         args._id,
@@ -60,18 +73,6 @@ const resolversUser = {
         { new: true }
       );
       return userEdited;
-    },
-
-    deleteUser: async (parent, args) => {
-      if (Object.keys(args).includes("email")) {
-        const userDeleted = await UserModel.findOneAndDelete({
-          email: args.email,
-        });
-        return userDeleted;
-      } else if (Object.keys(args).includes("_id")) {
-        const userDeleted = await UserModel.findOneAndDelete({ _id: args._id });
-        return userDeleted;
-      }
     },
   },
 };
