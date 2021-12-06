@@ -5,14 +5,6 @@ import dotenv from "dotenv";
 import ConectBD from "./db/db";
 import { types } from "./graphql/types";
 import { resolvers } from "./graphql/resolvers";
-<<<<<<< HEAD
-
-dotenv.config();
-
-const server = new ApolloServer({
-  typeDefs: types,
-  resolvers: resolvers,
-=======
 import { validateToken } from "./utils/tokenUtils";
 
 dotenv.config();
@@ -39,7 +31,6 @@ const server = new ApolloServer({
       };
       return null;
   },
->>>>>>> main
 });
 
 const app = express();
@@ -47,12 +38,7 @@ const app = express();
 app.use(Cors());
 
 app.use(express.json());
-<<<<<<< HEAD
-
-app.listen({ port: process.env.PORT || 4000 }, async () => {
-=======
 app.listen({ port: process.env.PORT || 4001 }, async () => {
->>>>>>> main
   await ConectBD();
   await server.start();
   server.applyMiddleware({ app });
