@@ -18,7 +18,7 @@ type User {
 type Query {
     #Estas constantes deben conincidir con los nombres en los query de los resolver 
     Users: [User] #Devuelve una lista con todos los usuarios
-    User(_id:String!): User #Devuelve un solo usuario consultado por su id
+    User(_id: String!): User #Devuelve un solo usuario consultado por su id
 }
 
 type Mutation {

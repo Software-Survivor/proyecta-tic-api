@@ -12,17 +12,15 @@ interface User {
 }
 
 const UserSchema = new Schema<User>({
-  email: {
+   email: {
     type: String,
     required: true,
     unique: true,
     validate: {
       validator: (email) => {
-        if (!email.includes("@")) {
-          return false;
-        }
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email); // Expresión regular para validar el formato del correo
       },
-      message: "El formato del correo es erróneo"
+      message: 'El formato del correo electrónico es incorrecto.',
     },
   },
   password: {
