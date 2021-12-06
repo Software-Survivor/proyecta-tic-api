@@ -3,7 +3,7 @@ import { Enum_Rol, Enum_StatusUsers } from '../enums/enums';
 
 interface User {
     email: string;
-    pasword: string;
+    password: string;
     identification: string;
     name: string;
     lastname: string;
@@ -22,7 +22,7 @@ const UserSchema = new Schema<User> ({
             }
         }
     },
-    pasword:{
+    password:{
         type: String,
         required: true,
     },

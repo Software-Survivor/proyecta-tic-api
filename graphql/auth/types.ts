@@ -15,6 +15,11 @@ type Mutation{
         status: Enum_StatusUsers
         password: String!
     ): Token!
+    login(
+        email: String!
+        password: String!
+    ): Token!
+    validateToken(toke: String!): Token!
 }
 `;
 
