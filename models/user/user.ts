@@ -18,9 +18,7 @@ const UserSchema = new Schema<User>({
     unique: true,
     validate: {
       validator: (email) => {
-        if (!email.includes("@")) {
-          return false;
-        }
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
       },
       message: "El formato del correo es erróneo"
     },
