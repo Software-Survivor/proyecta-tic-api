@@ -70,6 +70,11 @@ const typesProject = gql`
       fields: fieldsProject!
     ): Project
 
+    editStageProject(
+      _id: String!
+      stageProject: Enum_ProjectStage!
+    ): Project
+
     # Se puede eliminar por uno o mas campos si se usa la funcion findOneAndDelete en mogoose
     deleteProject(_id: String, nameProject: String): Project
 

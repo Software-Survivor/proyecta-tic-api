@@ -121,6 +121,17 @@ const resolversProject = {
       return projectEdited;
     },
 
+    editStageProject: async (parent, args) => {
+      const projectEdited = await ProjectModel.findByIdAndUpdate(
+        args._id,
+        {
+          stageProject: args.stageProject
+        },
+        { new: true }
+      );
+      return projectEdited;
+    },
+
     deleteProject: async (parent, args) => {
       if (Object.keys(args).includes("nameProject")) {
         const projectDeleted = await ProjectModel.findOneAndDelete({

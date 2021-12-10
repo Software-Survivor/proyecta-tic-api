@@ -15,7 +15,7 @@ const resolversAuth = {
         email: args.email,
         rol: args.rol,
       });
-      console.log("crear usuario", args);
+      // console.log("crear usuario", args);
       return {
         token: generateToken({
           _id: userCrated._id,
@@ -50,7 +50,7 @@ const resolversAuth = {
           error: "token no válido"
         };
       } else {
-        console.log("context.userData: ", context.userData);
+        // console.log("context.userData: ", context.userData);
         return {
           token: generateToken({
             _id: context.userData._id,

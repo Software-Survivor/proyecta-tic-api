@@ -10,7 +10,7 @@ const validateToken = (token) => {
           return{error: err};
       }
     });
-    console.log(verification)
+    // console.log(verification)
     return verification;
   }
 };

@@ -7,7 +7,7 @@ type Advancement {
   _id: ID!
   date: Date!
   description: String!
-  observations: [String]!
+  observations: [String]
   project: Project!
   createdBy: User!
 }

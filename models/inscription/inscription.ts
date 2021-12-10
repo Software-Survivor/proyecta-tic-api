@@ -26,15 +26,12 @@ const inscriptionSchema = new Schema<Inscription>({
     type: String,
     enum: Enum_StatusIncription,
     default: Enum_StatusIncription.PENDIENTE,
-    required: true,
   },
   dateStart: {
     type: Date,
-    required: true,
   },
   dateEnd: {
     type: Date,
-    required: true,
   },
 }, 
 {
