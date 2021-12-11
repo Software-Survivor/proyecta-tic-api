@@ -51,13 +51,8 @@ const resolverInscription = {
     editInscription: async (parent, args) => {
       const inscriptionEdited = await InscriptionModel.findByIdAndUpdate(
         args._id,
-
         {
-          project: args.project,
-          student: args.student,
           statusInscription: args.statusInscription,
-          dateStart: args.dateStart,
-          dateEnd: args.dateEnd,
         },
         { new: true }
       );

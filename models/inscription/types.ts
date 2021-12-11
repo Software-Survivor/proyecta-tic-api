@@ -30,13 +30,9 @@ const typesInscription = gql`
 
     editInscription(
       _id: String!
-      project: String!
-      student: String!
       statusInscription: Enum_StatusIncription!
-      dateStart: Date!
-      dateEnd: Date!
     ): Inscription
-
+    
     editInscriptionStartDateNow(_id: [String!]): Inscription
 
     editInscriptionEndDateNow(_id: String!): Inscription

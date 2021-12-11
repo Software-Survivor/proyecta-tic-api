@@ -48,6 +48,7 @@ const typesProject = gql`
     # /////////////////////////// QUERY SOLICITADOS POR EL FRONTEND  ////////////////////////////////
     ListProjects: [Project]
     DetailProject(_id: String!): Project
+    ListProjectLeader(leader: String!): [Project]
 
   }
 
