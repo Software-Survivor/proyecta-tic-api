@@ -29,15 +29,11 @@ type Mutation {
 
     editAdvancement(
       _id: String!
-      date: Date
       description: String
-      observations: [String]
-      project: String
-      createdBy: String
+      observations: [String]!
       ): Advancement
     
     deleteAdvancement(_id: String): Advancement
-    
     
   }
 `;
