@@ -4,27 +4,30 @@ const resolversUser = {
   Query: {
     Users: async (parent, args, context) => {
       // Consulta todos los usuarios de la base de datos
-
-      const users = await UserModel.find().populate([{
-        path:"inscriptions",
-        populate:{
-          path:"project",
-          populate:{
-            path:"leader"
-          }
-        }
-      }]);
+      if (context.userData.rol === "ADMINISTRADOR") {
+        const users = await UserModel.find();
+        return users;
+      } else {
+        return null;
+      }
+      
+      const users = await UserModel.find().populate([
+        {
+          path: "inscriptions",
+          populate: {
+            path: "project",
+            populate: {
+              path: "leader",
+            },
+          },
+        },
+      ]);
       return users;
 
       /////////////////// AGRAGAR ESTE CODIGO PARA VALIDARCION DE ROLES DESDE EL BACK  /////////////
-      // if(context.userData.rol === 'ADMINISTRADOR'){
-      //   const users = await UserModel.find();
-      //   return users;
-      // }else{
-      //   return null;
-      // }
-
+     
     },
+
     User: async (parent, args) => {
       const user = await UserModel.findOne({ _id: args._id });
       return user;
