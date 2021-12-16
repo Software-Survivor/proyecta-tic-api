@@ -1,13 +1,23 @@
 import { gql } from "apollo-server-express";
 
 const typesAdvancement = gql`
+ type Observations {
+    _id: ID!
+    observations: String!
+ 
+  }
+input inputObservations{
 
+    observations: String!
+   
+  }
+ 
 
 type Advancement {
   _id: ID!
   date: Date!
   description: String!
-  observations: [String]!
+  observations: [Observations]!
   project: Project!
   createdBy: User!
 }
@@ -22,7 +32,7 @@ type Mutation {
     createAdvancement(
       date: Date!
       description: String!
-      observations: [String]!
+      observations: [inputObservations]!
       project: String!
       createdBy: String!
     ): Advancement
@@ -31,13 +41,27 @@ type Mutation {
       _id: String!
       date: Date
       description: String
-      observations: [String]
+      observations: [inputObservations]
       project: String
       createdBy: String
       ): Advancement
     
     deleteAdvancement(_id: String): Advancement
+
+    createObservations(
+    idAdvancement: String!,
+    observations: String!
+    ): Advancement
     
+    editObservations(
+      idAdvancement: String!,
+    observations: String!
+    ): Project
+
+    deleteObservations(
+      idAdvancement: String!,
+    observations: String!
+    ):Project
     
   }
 `;

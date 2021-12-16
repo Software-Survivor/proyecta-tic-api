@@ -5,7 +5,7 @@ import { UserModel } from "../user/user";
 interface Advancement {
   date: Date;
   description: string;
-  observations: [string];
+  observations:  [{ observations: String}]
   project: Schema.Types.ObjectId;
   createdBy: Schema.Types.ObjectId;
 }
@@ -21,8 +21,9 @@ const AdvancementSchema = new Schema<Advancement>({
   },
   observations: [
     {
-      type: String,
-    },
+      observations: {
+        type: String,
+      }}
   ],
   project: {
     type: Schema.Types.ObjectId,
