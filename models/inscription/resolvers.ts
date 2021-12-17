@@ -4,9 +4,7 @@ import { InscriptionModel } from "./inscription";
 const resolverInscription = {
   Query: {
     Inscriptions: async (parent, args) => {
-      const inscription = await InscriptionModel.find()
-        .populate("project")
-        .populate("student");
+      const inscription = await InscriptionModel.find().populate("student").populate("project");
 
       return inscription;
     },
@@ -53,6 +51,7 @@ const resolverInscription = {
         args._id,
         {
           statusInscription: args.statusInscription,
+          dateStart: new Date(Date.now()),
         },
         { new: true }
       );

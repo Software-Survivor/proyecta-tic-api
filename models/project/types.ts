@@ -90,6 +90,7 @@ const typesProject = gql`
       field:fieldObjective!
     ): Project
 
+
     deleteObjective(
       idProject: String!,
       idObjective: String!,
