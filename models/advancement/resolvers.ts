@@ -52,6 +52,33 @@ const resolversAdvancement = {
       return advancementDeleted;
     },
 
+    createObservations: async (parent, args) => {
+      const avanceConObservacion = await AdvancementModel.findByIdAndUpdate(args.idAdvancement, {
+        $addToSet: {
+          observations: {
+            observations: args.observations
+        },}
+      }, { new: true }); 
+      
+      return avanceConObservacion
+    },
+
+    editObservations: async (parent, args) => {
+      const editarObservacion = await AdvancementModel.findByIdAndUpdate(
+        args.idAdvancement,
+        {
+          $set: {
+            [`observations.${args.indexObservations}.observations`]:
+              args.field.description,
+            [`observations.${args.indexObservations}.typeObservations`]:
+              args.field.typeObservations,
+          },
+        },
+        { new: true }
+      );
+      return editarObservacion;
+    },
+
     
   },
 };
