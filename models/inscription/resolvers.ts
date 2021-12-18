@@ -1,10 +1,25 @@
 import { Enum_StatusIncription } from "../enum/enum";
 import { InscriptionModel } from "./inscription";
+import { ProjectModel } from "../project/project";
 
 const resolverInscription = {
   Query: {
-    Inscriptions: async (parent, args) => {
-      const inscription = await InscriptionModel.find().populate("student").populate("project");
+    Inscriptions: async (parent, args, context) => {
+      
+      let filter= {};;
+      if(context.userData){
+        if(context.userData.rol === "LIDER"){
+          const projects = await ProjectModel.find({leader: context.userData._id });
+          const projectList = projects.map((p)=>p._id.toString());
+          filter = {
+            project: {
+              $in: projectList
+            }
+          }
+        }
+      }
+      const inscription = await InscriptionModel.find({...filter}).populate("student").populate("project");
+      console.log("inscription", inscription)
 
       return inscription;
     },

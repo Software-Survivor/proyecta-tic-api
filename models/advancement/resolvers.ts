@@ -1,10 +1,23 @@
 import { AdvancementModel } from "./advancement";
+import { ProjectModel } from "../project/project";
 
 const resolversAdvancement = {
   Query: {
-    Advancements: async (parent, args) => {
-      const advancement = await AdvancementModel.find().populate("project").populate("createdBy");
-
+    Advancements: async (parent, args, context) => {
+      let filter= {};;
+      if(context.userData){
+        if(context.userData.rol === "LIDER"){
+          const projects = await ProjectModel.find({leader: context.userData._id });
+          const projectList = projects.map((p)=>p._id.toString());
+          filter = {
+            project: {
+              $in: projectList
+            }
+          }
+        }
+      }
+      const advancement = await AdvancementModel.find({...filter}).populate("project").populate("createdBy");
+      console.log("advancement", advancement)
       return advancement;
     },
 
@@ -40,6 +53,15 @@ const resolversAdvancement = {
           observations: args.observations,
           project: args.project,
           createdBy: args.createdBy,
+        }, 
+        {new: true}
+         );
+      return advancementEdited;
+    },
+
+    editObservation: async (parent, args) => {
+      const advancementEdited = await AdvancementModel.findByIdAndUpdate(args._id, {
+          observations: args.observations,
         }, 
         {new: true}
          );

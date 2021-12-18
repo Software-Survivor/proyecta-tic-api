@@ -35,6 +35,11 @@ type Mutation {
       project: String
       createdBy: String
       ): Advancement
+
+      editObservation(
+      _id: String!
+      observations: [String]
+      ): Advancement
     
     deleteAdvancement(_id: String): Advancement
     
