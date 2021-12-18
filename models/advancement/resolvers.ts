@@ -85,22 +85,22 @@ const resolversAdvancement = {
       return avanceConObservacion
     },
 
-    editObservations: async (parent, args) => {
-      const editarObservacion = await AdvancementModel.findByIdAndUpdate(
-        args.idAdvancement,
-        {
-          $set: {
-            [`observations.${args.indexObservations}.observations`]:
-              args.field.description,
-            [`observations.${args.indexObservations}.typeObservations`]:
-              args.field.typeObservations,
-          },
-        },
-        { new: true }
-      );
+    // editObservations: async (parent, args) => {
+    //   const editarObservacion = await AdvancementModel.findByIdAndUpdate(
+    //     args.idAdvancement,
+    //     {
+    //       $set: {
+    //         [`observations.${args.indexObservations}.observations`]:
+    //           args.field.description,
+    //         [`observations.${args.indexObservations}.typeObservations`]:
+    //           args.field.typeObservations,
+    //       },
+    //     },
+    //     { new: true }
+    //   );
 
-      return editarObservacion;
-    },
+    //   return editarObservacion;
+    // },
 
 
   },

@@ -17,11 +17,7 @@ type Advancement {
   _id: ID!
   date: Date!
   description: String!
-<<<<<<< HEAD
-  observations: [Observations]!
-=======
   observations: [String]
->>>>>>> dev_gadea
   project: Project!
   createdBy: User!
 }
