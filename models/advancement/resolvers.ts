@@ -74,16 +74,16 @@ const resolversAdvancement = {
       return advancementDeleted;
     },
 
-    createObservations: async (parent, args) => {
-      const avanceConObservacion = await AdvancementModel.findByIdAndUpdate(args.idAdvancement, {
-        $addToSet: {
-          observations: {
-            observations: args.observations
-        },}
-      }, { new: true }); 
+    // createObservations: async (parent, args) => {
+    //   const avanceConObservacion = await AdvancementModel.findByIdAndUpdate(args.idAdvancement, {
+    //     $addToSet: {
+    //       observations: {
+    //         observations: args.observations
+    //     },}
+    //   }, { new: true }); 
       
-      return avanceConObservacion
-    },
+    //   return avanceConObservacion
+    // },
 
     // editObservations: async (parent, args) => {
     //   const editarObservacion = await AdvancementModel.findByIdAndUpdate(
