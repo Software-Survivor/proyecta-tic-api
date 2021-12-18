@@ -58,6 +58,18 @@ const resolversAdvancement = {
       return advancementEdited;
     },
 
+
+    editAdvancementOnly: async (parent, args) => {
+      const advancementEdited = await AdvancementModel.findByIdAndUpdate(
+        args._id, 
+        {
+          description: args.description,
+        }, 
+        {new: true}
+         );
+      return advancementEdited;
+    },
+
     editObservation: async (parent, args) => {
       const advancementEdited = await AdvancementModel.findByIdAndUpdate(args._id, {
           observations: args.observations,
@@ -67,12 +79,21 @@ const resolversAdvancement = {
       return advancementEdited;
     },
 
-    deleteAdvancement: async (parent, args) => {
-      const advancementDeleted = await AdvancementModel.findOneAndDelete({
-        _id: args._id,
-      });
-      return advancementDeleted;
+    createObservation: async (parent, args) => {
+      const advancementEdited = await AdvancementModel.findByIdAndUpdate(args._id, {
+          observations: args.observations,
+        }, 
+        {new: true}
+         );
+      return advancementEdited;
     },
+
+    // deleteAdvancement: async (parent, args) => {
+    //   const advancementDeleted = await AdvancementModel.findOneAndDelete({
+    //     _id: args._id,
+    //   });
+    //   return advancementDeleted;
+    // },
 
     // createObservations: async (parent, args) => {
     //   const avanceConObservacion = await AdvancementModel.findByIdAndUpdate(args.idAdvancement, {
