@@ -17,7 +17,11 @@ type Advancement {
   _id: ID!
   date: Date!
   description: String!
+<<<<<<< HEAD
   observations: [Observations]!
+=======
+  observations: [String]
+>>>>>>> dev_gadea
   project: Project!
   createdBy: User!
 }
@@ -39,11 +43,13 @@ type Mutation {
 
     editAdvancement(
       _id: String!
-      date: Date
       description: String
-      observations: [inputObservations]
-      project: String
-      createdBy: String
+      observations: [String]!
+      ): Advancement
+
+      editObservation(
+      _id: String!
+      observations: [String]
       ): Advancement
     
     deleteAdvancement(_id: String): Advancement
@@ -52,16 +58,6 @@ type Mutation {
     idAdvancement: String!,
     observations: String!
     ): Advancement
-    
-    editObservations(
-      idAdvancement: String!,
-    observations: String!
-    ): Project
-
-    deleteObservations(
-      idAdvancement: String!,
-    observations: String!
-    ):Project
     
   }
 `;

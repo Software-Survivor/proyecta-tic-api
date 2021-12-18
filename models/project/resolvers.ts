@@ -1,3 +1,4 @@
+import { Mongoose, Schema } from "mongoose";
 import { ProjectModel } from "./project";
 
 const resolversProject = {
@@ -10,7 +11,7 @@ const resolversProject = {
       return project;
     },
     Project: async (parent, args) => {
-      const project = await ProjectModel.findOne({ _id: args._id })
+      const project = await ProjectModel.find({ _id: args._id })
         .populate("leader")
         .populate("advancement")
         .populate("inscription");
@@ -33,6 +34,18 @@ const resolversProject = {
       //     stageProject
       //   }
       // }
+    },
+
+    ListProjectLeader: async (parent, args) => {
+      console.log("arg: ", args)
+      const listProjects_ = await ProjectModel.find();
+      const listFiltred = [];
+      listProjects_.map((u)=>{
+        if(JSON.stringify(u["leader"]) === `"${args.leader}"`){
+          listFiltred.push(u);
+        }
+      });
+      return listFiltred;
     },
     DetailProject: async (parent, args) => {
       const detailProjects = await ProjectModel.findOne({ _id: args._id })
@@ -115,6 +128,17 @@ const resolversProject = {
         args._id,
         {
           ...args.fields,
+        },
+        { new: true }
+      );
+      return projectEdited;
+    },
+
+    editStageProject: async (parent, args) => {
+      const projectEdited = await ProjectModel.findByIdAndUpdate(
+        args._id,
+        {
+          stageProject: args.stageProject
         },
         { new: true }
       );

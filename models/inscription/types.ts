@@ -5,7 +5,7 @@ const typesInscription = gql`
     _id: ID!
     project: Project!
     student: User!
-    statusInscription: Enum_StatusIncription!
+    statusInscription: Enum_StatusIncription
     dateStart: Date
     dateEnd: Date
   }
@@ -14,32 +14,30 @@ const typesInscription = gql`
   type Query {
     Inscriptions: [Inscription]
     Inscription(_id: String!): Inscription
-    InscriptionAll(_id:String!): [Inscription]
+    InscriptionAll(_id: String!): [Inscription]
   }
 
   # Sirve para cambiar algo en la base de datos: CREAR, BORRAR, EDITAR
 
   type Mutation {
     createInscription(
-        project: String!
-        student: String!
-        statusInscription: Enum_StatusIncription!
-        dateStart: Date!
-        dateEnd: Date!
+      project: String!
+      student: String!
+      statusInscription: Enum_StatusIncription
+      dateStart: Date
+      dateEnd: Date
     ): Inscription
 
     editInscription(
       _id: String!
-        project: String!
-        student: String!
-        statusInscription: Enum_StatusIncription!
-        dateStart: Date!
-        dateEnd: Date!
+      statusInscription: Enum_StatusIncription!
     ): Inscription
+    
+    editInscriptionStartDateNow(_id: [String!]): Inscription
 
-    approveInscription(
-      _id: String!
-    ): Inscription
+    editInscriptionEndDateNow(_id: String!): Inscription
+
+    approveInscription(_id: String!): Inscription
 
     # Se puede eliminar por uno o mas campos si se usa la funcion findOneAndDelete en mogoose
     deleteInscription(_id: String, nameInscription: String): Inscription

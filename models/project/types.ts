@@ -48,6 +48,7 @@ const typesProject = gql`
     # /////////////////////////// QUERY SOLICITADOS POR EL FRONTEND  ////////////////////////////////
     ListProjects: [Project]
     DetailProject(_id: String!): Project
+    ListProjectLeader(leader: String!): [Project]
 
   }
 
@@ -70,6 +71,11 @@ const typesProject = gql`
       fields: fieldsProject!
     ): Project
 
+    editStageProject(
+      _id: String!
+      stageProject: Enum_ProjectStage!
+    ): Project
+
     # Se puede eliminar por uno o mas campos si se usa la funcion findOneAndDelete en mogoose
     deleteProject(_id: String, nameProject: String): Project
 
@@ -83,6 +89,7 @@ const typesProject = gql`
       indexObjective: Int!,
       field:fieldObjective!
     ): Project
+
 
     deleteObjective(
       idProject: String!,
