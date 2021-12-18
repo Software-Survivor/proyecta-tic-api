@@ -47,12 +47,11 @@ const resolversAdvancement = {
     },
 
     editAdvancement: async (parent, args) => {
-      const advancementEdited = await AdvancementModel.findByIdAndUpdate(args._id, {
-          date: args.date,
+      const advancementEdited = await AdvancementModel.findByIdAndUpdate(
+        args._id, 
+        {
           description: args.description,
           observations: args.observations,
-          project: args.project,
-          createdBy: args.createdBy,
         }, 
         {new: true}
          );
